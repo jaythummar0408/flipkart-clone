@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import React, { useRef, useState } from "react";
-import { Heart, Share2 } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { Heart, Share2, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -16,6 +16,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [timeLeft, setTimeLeft] = useState({ hours: 6, minutes: 0, seconds: 0 });
   const product = products.find(p => p.id === id);
   const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
@@ -30,13 +31,31 @@ const ProductDetail = () => {
   // Track carousel changes
   React.useEffect(() => {
     if (!api) return;
-    
+
     setCurrent(api.selectedScrollSnap());
-    
+
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
+
+  // Countdown timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        }
+        return prev;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -106,8 +125,21 @@ const ProductDetail = () => {
               <span className="text-2xl font-bold text-gray-900">₹{product.salePrice}</span>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded p-3 text-center">
-              <p className="text-gray-800 font-medium text-sm">Offer ends in <span className="text-red-600 font-bold">6:9</span></p>
+            <div className="bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-lg p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-red-600" />
+                  <p className="text-gray-800 font-semibold text-sm">Offer ends in</p>
+                </div>
+                <div className="flex items-center gap-1 bg-red-600 text-white px-3 py-1.5 rounded-lg">
+                  <span className="text-lg font-mono font-bold">
+                    {String(timeLeft.hours).padStart(2, '0')}:
+                    {String(timeLeft.minutes).padStart(2, '0')}:
+                    {String(timeLeft.seconds).padStart(2, '0')}
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs text-red-700 font-medium mt-2">⚡ Hurry! Limited time deal</p>
             </div>
           </div>
 

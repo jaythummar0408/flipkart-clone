@@ -30,7 +30,7 @@ const Address = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background pb-20 overflow-x-hidden">
       <div className="bg-card border-b border-border sticky top-0 z-50">
         <div className="px-4 py-3 flex items-center gap-3">
           <Link to="/">
@@ -42,7 +42,7 @@ const Address = () => {
 
       <StepIndicator currentStep={1} />
 
-      <div className="px-4 py-6 max-w-2xl mx-auto">
+      <div className="px-3 sm:px-4 py-6 max-w-2xl mx-auto w-full">
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             placeholder="Full Name (Required)*"
@@ -136,9 +136,9 @@ const Address = () => {
       </div>
 
       {/* Fixed Bottom Button */}
-      <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-3 shadow-lg">
-        <div className="max-w-2xl mx-auto">
-          <Button 
+      <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-3 shadow-lg w-full">
+        <div className="max-w-2xl mx-auto px-1">
+          <Button
             onClick={handleSubmit}
             className="w-full bg-[#ff6f29] hover:bg-[#ff6f29]/90 text-white font-semibold h-12 text-base"
           >

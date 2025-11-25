@@ -7,9 +7,19 @@ import { toast } from "sonner";
 
 const Payment = () => {
   const product = products[0];
+  const upiId = "jppatel10125-2@okicici";
 
-  const handlePayment = (method: string) => {
-    toast.success(`Payment initiated via ${method}`);
+  const handlePaytmPayment = () => {
+    const amount = product.salePrice;
+    const name = "Flipkart";
+
+    // Create UPI payment URL for Paytm
+    const upiUrl = `paytmmp://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+
+    // Try to open Paytm app
+    window.location.href = upiUrl;
+
+    toast.success("Redirecting to Paytm...");
   };
 
   return (
@@ -44,43 +54,13 @@ const Payment = () => {
         {/* Payment Options */}
         <div className="space-y-3">
           <button
-            onClick={() => handlePayment("PhonePe")}
-            className="w-full bg-card rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition-shadow"
-          >
-            <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-              P
-            </div>
-            <span className="text-lg font-semibold">PhonePe</span>
-          </button>
-
-          <button
-            onClick={() => handlePayment("Paytm")}
-            className="w-full bg-card rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition-shadow"
+            onClick={handlePaytmPayment}
+            className="w-full bg-card rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition-shadow border-2 border-primary"
           >
             <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
               paytm
             </div>
             <span className="text-lg font-semibold">Paytm</span>
-          </button>
-
-          <button
-            onClick={() => handlePayment("Google Pay")}
-            className="w-full bg-card rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition-shadow"
-          >
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border border-border">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 via-red-500 via-yellow-500 to-green-500 rounded-full"></div>
-            </div>
-            <span className="text-lg font-semibold">Google Pay</span>
-          </button>
-
-          <button
-            onClick={() => handlePayment("SCAN PAY")}
-            className="w-full bg-card rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition-shadow"
-          >
-            <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl">
-              📱
-            </div>
-            <span className="text-lg font-semibold">SCAN PAY</span>
           </button>
         </div>
       </div>
@@ -92,12 +72,12 @@ const Payment = () => {
             <p className="text-xs text-muted-foreground line-through">₹{product.originalPrice}</p>
             <p className="text-xl font-bold">₹{product.salePrice}</p>
           </div>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="flex-1 max-w-xs bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold"
-            onClick={() => handlePayment("selected method")}
+            onClick={handlePaytmPayment}
           >
-            Order Now
+            Pay Now
           </Button>
         </div>
       </div>

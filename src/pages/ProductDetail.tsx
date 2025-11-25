@@ -106,14 +106,9 @@ const ProductDetail = () => {
           {/* Product Info */}
           <div className="bg-white p-4 space-y-2 border-b border-gray-200">
             <h1 className="text-base font-normal text-gray-800">{product.name}</h1>
-            
+
             <div className="flex items-center gap-2">
-              <div className="bg-secondary px-2 py-1 rounded flex items-center gap-1">
-                <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-                <span className="text-xs font-bold text-secondary-foreground">F-ASSURED</span>
-              </div>
+              <img src="/fassure.jpg" alt="Flipkart Assured" className="h-5 w-auto" />
             </div>
 
             <div className="flex items-baseline gap-3 flex-wrap">

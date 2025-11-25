@@ -6,7 +6,7 @@ import { Clock } from "lucide-react";
 import { products } from "@/data/products";
 
 const Home = () => {
-  const [timeLeft, setTimeLeft] = useState({ hours: 6, minutes: 35, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 5, seconds: 0 });
 
   useEffect(() => {
     const timer = setInterval(() => {

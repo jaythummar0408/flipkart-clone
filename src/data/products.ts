@@ -2,6 +2,7 @@ export interface Product {
   id: string;
   name: string;
   image: string;
+  images?: string[];
   originalPrice: number;
   salePrice: number;
   discount: number;
@@ -13,7 +14,14 @@ export const products: Product[] = [
   {
     id: "1",
     name: "boAt Lunar Discovery w/ 1.39",
-    image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
+    image: "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/7/n/s/-original-imaheh3gzp63zjaf.jpeg?q=70&crop=false",
+    images: [
+      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/7/n/s/-original-imaheh3gzp63zjaf.jpeg?q=70&crop=false",
+      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/x/2/r/-original-imahhuw9fnfghyya.jpeg?q=70&crop=false",
+      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/g/c/k/-original-imahhuw9kktzfrdm.jpeg?q=70&crop=false",
+      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/x/y/i/-original-imahhuw92hwsuzhm.jpeg?q=70&crop=false",
+      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/x/y/i/-original-imahhuw92hwsuzhm.jpeg?q=70&crop=false"
+    ],
     originalPrice: 5999,
     salePrice: 99,
     discount: 90,

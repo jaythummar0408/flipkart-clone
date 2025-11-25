@@ -30,11 +30,8 @@ const Header = () => {
             </div>
           </div>
 
-          <Link to="/cart" className="relative flex-shrink-0 ml-auto">
+          <Link to="/cart" className="flex-shrink-0 ml-auto">
             <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-1.5 -right-1.5 bg-destructive text-destructive-foreground text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-semibold">
-              1
-            </span>
           </Link>
         </div>
 

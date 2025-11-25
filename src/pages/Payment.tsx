@@ -35,33 +35,24 @@ const Payment = () => {
 
       <StepIndicator currentStep={3} />
 
-      <div className="container mx-auto px-4 space-y-4 max-w-2xl">
-        {/* Promo Banner */}
-        <div className="relative bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 rounded-lg overflow-hidden">
-          <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(0,255,255,0.2)_10px,rgba(0,255,255,0.2)_20px)]"></div>
-          <div className="relative py-4 px-6 flex items-center justify-between">
-            <div className="text-4xl">🎉</div>
-            <div className="flex-1 text-center">
-              <p className="text-lg font-bold text-foreground">Get up to 80% Discount on</p>
-              <p className="text-xl font-bold text-foreground">All UPI Payments</p>
-            </div>
-            <div className="text-4xl">🎁</div>
-          </div>
-          <div className="absolute top-0 right-0 w-16 h-16 bg-cyan-400 rounded-full -mr-8 -mt-8"></div>
-          <div className="absolute bottom-0 left-0 w-16 h-16 bg-cyan-400 rounded-full -ml-8 -mb-8"></div>
-        </div>
-
+      <div className="container mx-auto px-4 space-y-4 max-w-2xl py-6">
         {/* Payment Options */}
         <div className="space-y-3">
           <button
             onClick={handlePaytmPayment}
             className="w-full bg-card rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition-shadow border-2 border-primary"
           >
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-              paytm
-            </div>
+            <img src="/paytm.png" alt="Paytm" className="h-10 w-auto" />
             <span className="text-lg font-semibold">Paytm</span>
           </button>
+        </div>
+
+        {/* Security Message */}
+        <div className="text-center text-sm text-muted-foreground">
+          <p className="flex items-center justify-center gap-2">
+            <span className="text-green-600">🔒</span>
+            <span>100% Secure & Safe Payments</span>
+          </p>
         </div>
       </div>
 

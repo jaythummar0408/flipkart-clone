@@ -22,6 +22,11 @@ const ProductDetail = () => {
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!product) {
     return <div>Product not found</div>;
   }

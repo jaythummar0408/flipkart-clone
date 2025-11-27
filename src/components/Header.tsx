@@ -1,5 +1,6 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, User, Download } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoSvg from "/logo.svg";
 
 const Header = () => {
   return (
@@ -9,19 +10,19 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img src="/logo.svg" alt="Flipkart" className="h-8 w-auto" />
+            <img src={logoSvg} alt="Flipkart" className="h-8 w-auto" />
           </Link>
 
           {/* Right Side Icons */}
           <div className="flex items-center gap-6">
             {/* Download App */}
             <button className="flex items-center gap-1.5">
-              <img src="/download.svg" alt="Download" className="h-4 w-4" />
+              <Download className="h-4 w-4" />
             </button>
 
             {/* Login */}
             <button className="flex items-center gap-1.5">
-              <img src="/login.svg" alt="Login" className="h-4 w-4" />
+              <User className="h-4 w-4" />
               <span className="text-sm font-medium">Login</span>
             </button>
 

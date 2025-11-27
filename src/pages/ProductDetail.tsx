@@ -37,15 +37,23 @@ const ProductDetail = () => {
 
   // Generate random rating and review count based on product ID
   const generateRating = (productId: string) => {
-    const seed = parseInt(productId);
+    // Convert alphanumeric ID to a numeric seed
+    let seed = 0;
+    for (let i = 0; i < productId.length; i++) {
+      seed += productId.charCodeAt(i);
+    }
     const rating = 4.0 + (seed % 10) / 10; // Generates rating between 4.0 and 4.9
     return Math.min(rating, 4.9);
   };
 
   const generateReviewCount = (productId: string) => {
-    const seed = parseInt(productId);
-    const baseCount = 500 + (seed * 347); // Different base for each product
-    return baseCount + (seed * 123) % 3000; // Random count between 500-3500
+    // Convert alphanumeric ID to a numeric seed
+    let seed = 0;
+    for (let i = 0; i < productId.length; i++) {
+      seed += productId.charCodeAt(i);
+    }
+    const baseCount = 500 + (seed * 3); // Different base for each product
+    return baseCount + (seed * 2) % 3000; // Random count between 500-3500
   };
 
   const overallRating = generateRating(product.id);

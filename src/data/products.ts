@@ -12,7 +12,7 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: "1",
+    id: "HD7K2M9P4X",
     name: "Premium Cotton Hoodie - Unisex",
     image: "/hoodie1.jpg",
     images: [
@@ -37,7 +37,7 @@ export const products: Product[] = [
     ]
   },
   {
-    id: "2",
+    id: "PL5N8R3Q6Y",
     name: "Classic Pullover Hoodie - Premium Edition",
     image: "/hoodie2-1.jpg",
     images: [
@@ -64,7 +64,7 @@ export const products: Product[] = [
     ]
   },
   {
-    id: "3",
+    id: "OS9W4T7B2Z",
     name: "Oversized Hoodie - Street Style",
     image: "/hoodie3-1.jpg",
     images: [
@@ -88,7 +88,7 @@ export const products: Product[] = [
     ]
   },
   {
-    id: "4",
+    id: "AT6F1V8C5L",
     name: "Athletic Performance Hoodie",
     image: "/hoodie4-1.jpg",
     images: [
@@ -113,7 +113,7 @@ export const products: Product[] = [
     ]
   },
   {
-    id: "5",
+    id: "VG3H9D2S7K",
     name: "Vintage Graphic Hoodie",
     image: "/hoodie5-1.jpg",
     images: [
@@ -138,7 +138,7 @@ export const products: Product[] = [
     ]
   },
   {
-    id: "6",
+    id: "JK4E8X1M6R",
     name: "Premium Leather Jacket - Classic Biker Style",
     image: "/jacket1-1.jpg",
     images: [

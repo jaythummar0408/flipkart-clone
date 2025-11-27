@@ -13,89 +13,154 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "1",
-    name: "boAt Lunar Discovery w/ 1.39",
-    image: "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/7/n/s/-original-imaheh3gzp63zjaf.jpeg?q=70&crop=false",
+    name: "Premium Cotton Hoodie - Unisex",
+    image: "/hoodie1.jpg",
     images: [
-      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/7/n/s/-original-imaheh3gzp63zjaf.jpeg?q=70&crop=false",
-      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/x/2/r/-original-imahhuw9fnfghyya.jpeg?q=70&crop=false",
-      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/g/c/k/-original-imahhuw9kktzfrdm.jpeg?q=70&crop=false",
-      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/x/y/i/-original-imahhuw92hwsuzhm.jpeg?q=70&crop=false",
-      "https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/x/y/i/-original-imahhuw92hwsuzhm.jpeg?q=70&crop=false"
+      "/hoodie1.jpg",
+      "/hoodie2.jpg",
+      "/hoodie3.jpg",
+      "/hoodie4.jpg",
+      "/hoodie5.jpg"
     ],
-    originalPrice: 5999,
-    salePrice: 99,
-    discount: 90,
-    description: "Premium smartwatch with advanced features",
+    originalPrice: 2499,
+    salePrice: 179,
+    discount: 93,
+    description: "Comfortable premium cotton hoodie with modern design",
     features: [
-      "Turn-by-Turn Navigation",
-      "Up to 7 Days of Battery Life",
-      "DIY Watch Face Studio",
-      "Bluetooth Calling",
-      "700+ Active Modes",
-      "3.5cm HD Display"
+      "100% Premium Cotton",
+      "Soft Fleece Interior",
+      "Adjustable Drawstring Hood",
+      "Kangaroo Pocket",
+      "Ribbed Cuffs and Hem",
+      "Machine Washable",
+      "Available in Multiple Sizes"
     ]
   },
   {
     id: "2",
-    name: "Samsung 370 W 3.1 Channel Soundbar",
-    image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400",
-    originalPrice: 29999,
-    salePrice: 99,
-    discount: 90,
-    description: "Premium soundbar with immersive audio"
+    name: "Classic Pullover Hoodie - Premium Edition",
+    image: "/hoodie2-1.jpg",
+    images: [
+      "/hoodie2-1.jpg",
+      "/hoodie2-2.jpg",
+      "/hoodie2-3.jpg",
+      "/hoodie2-4.jpg",
+      "/hoodie2-5.jpg",
+      "/hoodie2-6.jpg"
+    ],
+    originalPrice: 2999,
+    salePrice: 199,
+    discount: 93,
+    description: "Premium quality pullover hoodie with superior comfort and style",
+    features: [
+      "Premium Blend Fabric",
+      "Ultra Soft Interior Lining",
+      "Double-Layered Hood",
+      "Front Pouch Pocket",
+      "Durable Stitching",
+      "Pre-Shrunk Material",
+      "Unisex Design",
+      "Easy Care - Machine Washable"
+    ]
   },
   {
     id: "3",
-    name: "OnePlus Nord Buds 2",
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400",
-    originalPrice: 2999,
-    salePrice: 99,
-    discount: 90,
-    description: "True wireless earbuds with ANC"
+    name: "Oversized Hoodie - Street Style",
+    image: "/hoodie3-1.jpg",
+    images: [
+      "/hoodie3-1.jpg",
+      "/hoodie3-2.jpg",
+      "/hoodie3-3.jpg",
+      "/hoodie3-4.jpg"
+    ],
+    originalPrice: 2799,
+    salePrice: 179,
+    discount: 94,
+    description: "Trendy oversized hoodie perfect for casual streetwear style",
+    features: [
+      "Oversized Relaxed Fit",
+      "Heavy Weight Cotton",
+      "Drop Shoulder Design",
+      "Spacious Kangaroo Pocket",
+      "Thick Drawstrings",
+      "Reinforced Seams",
+      "Street Style Fashion"
+    ]
   },
   {
     id: "4",
-    name: "Nothing Ear (2) White Edition",
-    image: "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400",
-    originalPrice: 8999,
-    salePrice: 99,
-    discount: 90,
-    description: "Premium TWS with transparent design"
+    name: "Athletic Performance Hoodie",
+    image: "/hoodie4-1.jpg",
+    images: [
+      "/hoodie4-1.jpg",
+      "/hoodie4-2.jpg",
+      "/hoodie4-3.jpg",
+      "/hoodie4-4.jpg"
+    ],
+    originalPrice: 3299,
+    salePrice: 199,
+    discount: 94,
+    description: "High-performance athletic hoodie designed for active lifestyle",
+    features: [
+      "Moisture-Wicking Fabric",
+      "Breathable Material",
+      "Athletic Fit Design",
+      "Zippered Side Pockets",
+      "Thumbhole Cuffs",
+      "Quick-Dry Technology",
+      "Reflective Details",
+      "Perfect for Gym & Sports"
+    ]
   },
   {
     id: "5",
-    name: "JBL Flip 6 Wireless Portable Speaker",
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400",
-    originalPrice: 9999,
-    salePrice: 99,
-    discount: 90,
-    description: "Waterproof portable Bluetooth speaker"
+    name: "Vintage Graphic Hoodie",
+    image: "/hoodie5-1.jpg",
+    images: [
+      "/hoodie5-1.jpg",
+      "/hoodie5-2.jpg",
+      "/hoodie5-3.jpg",
+      "/hoodie5-4.jpg"
+    ],
+    originalPrice: 2599,
+    salePrice: 179,
+    discount: 93,
+    description: "Stylish vintage-inspired hoodie with unique graphic design",
+    features: [
+      "Vintage Graphic Print",
+      "Soft Cotton Blend",
+      "Classic Fit",
+      "Front Pocket",
+      "Adjustable Hood",
+      "Fade-Resistant Print",
+      "Retro Style Design",
+      "Comfortable All-Day Wear"
+    ]
   },
   {
     id: "6",
-    name: "Xiaomi Power Bank 4i 20000mAh",
-    image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400",
-    originalPrice: 1499,
-    salePrice: 99,
-    discount: 90,
-    description: "High capacity power bank with fast charging"
-  },
-  {
-    id: "7",
-    name: "Noise Airwave Bluetooth Neckband",
-    image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400",
-    originalPrice: 1999,
-    salePrice: 99,
-    discount: 90,
-    description: "Wireless neckband with long battery life"
-  },
-  {
-    id: "8",
-    name: "Fire Boltt Gladiator Smartwatch",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
-    originalPrice: 4999,
-    salePrice: 99,
-    discount: 90,
-    description: "Rugged smartwatch with fitness tracking"
+    name: "Premium Leather Jacket - Classic Biker Style",
+    image: "/jacket1-1.jpg",
+    images: [
+      "/jacket1-1.jpg",
+      "/jacket1-2.jpg",
+      "/jacket1-3.jpg",
+      "/jacket1-4.jpg"
+    ],
+    originalPrice: 8999,
+    salePrice: 199,
+    discount: 98,
+    description: "Premium quality leather jacket with classic biker design",
+    features: [
+      "Genuine Leather Material",
+      "YKK Zipper Closure",
+      "Multiple Pockets",
+      "Quilted Shoulder Panels",
+      "Inner Lining",
+      "Adjustable Waist Tabs",
+      "Stand Collar Design",
+      "Durable & Long-Lasting",
+      "Perfect for All Seasons"
+    ]
   }
 ];

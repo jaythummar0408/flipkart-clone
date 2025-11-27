@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import React, { useRef, useState, useEffect } from "react";
-import { Clock } from "lucide-react";
+import { Clock, Truck, Star, Shield, Wallet, ChevronDown, ChevronUp, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -16,7 +16,9 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 5, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 2, seconds: 0 });
+  const [highlightsExpanded, setHighlightsExpanded] = useState(true);
+  const [detailsExpanded, setDetailsExpanded] = useState(false);
   const product = products.find(p => p.id === id);
   const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
@@ -32,6 +34,41 @@ const ProductDetail = () => {
   }
 
   const images = product.images || [product.image, product.image, product.image, product.image, product.image];
+
+  // Generate random rating and review count based on product ID
+  const generateRating = (productId: string) => {
+    const seed = parseInt(productId);
+    const rating = 4.0 + (seed % 10) / 10; // Generates rating between 4.0 and 4.9
+    return Math.min(rating, 4.9);
+  };
+
+  const generateReviewCount = (productId: string) => {
+    const seed = parseInt(productId);
+    const baseCount = 500 + (seed * 347); // Different base for each product
+    return baseCount + (seed * 123) % 3000; // Random count between 500-3500
+  };
+
+  const overallRating = generateRating(product.id);
+  const totalReviews = generateReviewCount(product.id);
+
+  // Generate rating distribution based on overall rating
+  const generateRatingDistribution = (total: number, avgRating: number) => {
+    const fiveStarPercent = (avgRating - 4) * 100; // 0-90%
+    const fourStarPercent = 100 - fiveStarPercent - 20;
+    const threeStarPercent = 12;
+    const twoStarPercent = 5;
+    const oneStarPercent = 3;
+
+    return [
+      { stars: 5, count: Math.floor(total * fiveStarPercent / 100), percentage: fiveStarPercent },
+      { stars: 4, count: Math.floor(total * fourStarPercent / 100), percentage: fourStarPercent },
+      { stars: 3, count: Math.floor(total * threeStarPercent / 100), percentage: threeStarPercent },
+      { stars: 2, count: Math.floor(total * twoStarPercent / 100), percentage: twoStarPercent },
+      { stars: 1, count: Math.floor(total * oneStarPercent / 100), percentage: oneStarPercent },
+    ];
+  };
+
+  const ratingDistribution = generateRatingDistribution(totalReviews, overallRating);
 
   // Track carousel changes
   React.useEffect(() => {
@@ -54,8 +91,10 @@ const ProductDetail = () => {
           return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
         } else if (prev.hours > 0) {
           return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        } else {
+          // Timer reached 0, add 45 seconds
+          return { hours: 0, minutes: 0, seconds: 45 };
         }
-        return prev;
       });
     }, 1000);
 
@@ -132,6 +171,181 @@ const ProductDetail = () => {
                 </div>
               </div>
               <p className="text-xs text-red-700 font-medium mt-2">⚡ Hurry! Limited time deal</p>
+            </div>
+          </div>
+
+          {/* Delivery & Services */}
+          <div className="bg-white p-4 border-b border-gray-200">
+            <div className="space-y-3">
+              {/* Express Delivery */}
+              <div className="flex items-start gap-3">
+                <Truck className="h-5 w-5 text-gray-700 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">EXPRESS Delivery in 2 days</p>
+                </div>
+              </div>
+
+              {/* Seller Info */}
+              <div className="flex items-start gap-3 pt-2 border-t border-gray-100">
+                <div className="h-5 w-5 flex items-center justify-center mt-0.5">
+                  <div className="h-4 w-4 bg-gray-200 rounded"></div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-900">Fulfilled by HSAtlastradeFashion</p>
+                  <div className="flex items-center gap-1 mt-1">
+                    <div className="flex items-center bg-green-600 text-white px-1.5 py-0.5 rounded text-xs">
+                      <span className="font-semibold">4.2</span>
+                      <Star className="h-2.5 w-2.5 ml-0.5 fill-white" />
+                    </div>
+                    <span className="text-xs text-gray-600">• 3 years with Flipkart</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Service Icons */}
+              <div className="grid grid-cols-3 gap-3 pt-3 border-t border-gray-100">
+                <div className="flex flex-col items-center text-center">
+                  <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center mb-1">
+                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  </div>
+                  <p className="text-xs font-medium text-gray-700">7-Day</p>
+                  <p className="text-xs text-gray-500">Return</p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="h-10 w-10 rounded-full bg-green-50 flex items-center justify-center mb-1">
+                    <Shield className="h-5 w-5 text-green-600" />
+                  </div>
+                  <p className="text-xs font-medium text-gray-700">100% Secure</p>
+                  <p className="text-xs text-gray-500">Payment</p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="h-10 w-10 rounded-full bg-purple-50 flex items-center justify-center mb-1">
+                    <Shield className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <p className="text-xs font-medium text-gray-700">Flipkart</p>
+                  <p className="text-xs text-gray-500">Assured</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Highlights */}
+          <div className="bg-white border-b border-gray-200">
+            <button
+              onClick={() => setHighlightsExpanded(!highlightsExpanded)}
+              className="w-full p-4 flex items-center justify-between"
+            >
+              <h3 className="text-base font-semibold text-gray-900">Product highlights</h3>
+              {highlightsExpanded ? (
+                <ChevronUp className="h-5 w-5 text-gray-600" />
+              ) : (
+                <ChevronDown className="h-5 w-5 text-gray-600" />
+              )}
+            </button>
+            {highlightsExpanded && (
+              <div className="px-4 pb-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Color</p>
+                    <p className="text-sm font-medium text-gray-900">Multi</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Fabric</p>
+                    <p className="text-sm font-medium text-gray-900">Cotton Blend</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Pattern</p>
+                    <p className="text-sm font-medium text-gray-900">Solid</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Sleeve</p>
+                    <p className="text-sm font-medium text-gray-900">Full Sleeve</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* All Details */}
+          <div className="bg-white border-b border-gray-200">
+            <button
+              onClick={() => setDetailsExpanded(!detailsExpanded)}
+              className="w-full p-4 flex items-center justify-between"
+            >
+              <h3 className="text-base font-semibold text-gray-900">All details</h3>
+              {detailsExpanded ? (
+                <ChevronUp className="h-5 w-5 text-gray-600" />
+              ) : (
+                <ChevronDown className="h-5 w-5 text-gray-600" />
+              )}
+            </button>
+            {detailsExpanded && (
+              <div className="px-4 pb-4">
+                <div className="space-y-4">
+                  <h4 className="text-sm font-semibold text-gray-900">General</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Brand</p>
+                      <p className="text-sm font-medium text-gray-900">FASHION BRAND</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Color</p>
+                      <p className="text-sm font-medium text-gray-900">Multi</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Fabric</p>
+                      <p className="text-sm font-medium text-gray-900">Cotton Blend</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Pattern</p>
+                      <p className="text-sm font-medium text-gray-900">Solid</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Sleeve</p>
+                      <p className="text-sm font-medium text-gray-900">Full Sleeve</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Fit</p>
+                      <p className="text-sm font-medium text-gray-900">Regular</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Ratings & Reviews */}
+          <div className="bg-white p-4 border-b border-gray-200">
+            <h3 className="text-base font-semibold text-gray-900 mb-4">Ratings & Reviews</h3>
+
+            {/* Overall Rating */}
+            <div className="flex items-start gap-4">
+              <div className="text-center">
+                <div className="flex items-center gap-1 mb-1">
+                  <span className="text-3xl font-bold text-gray-900">{overallRating.toFixed(1)}</span>
+                  <Star className="h-6 w-6 fill-green-600 text-green-600" />
+                </div>
+                <p className="text-xs text-gray-500">{totalReviews.toLocaleString()} Ratings</p>
+              </div>
+
+              {/* Rating Bars */}
+              <div className="flex-1 space-y-1">
+                {ratingDistribution.map((rating) => (
+                  <div key={rating.stars} className="flex items-center gap-2">
+                    <span className="text-xs text-gray-600 w-3">{rating.stars}</span>
+                    <Star className="h-3 w-3 fill-gray-400 text-gray-400" />
+                    <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-green-600 rounded-full"
+                        style={{ width: `${rating.percentage}%` }}
+                      />
+                    </div>
+                    <span className="text-xs text-gray-500 w-12 text-right">{rating.count.toLocaleString()}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

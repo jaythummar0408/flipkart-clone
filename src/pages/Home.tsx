@@ -1,13 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import CategoryIcon from "@/components/CategoryIcon";
 import ProductCard from "@/components/ProductCard";
 import { Clock } from "lucide-react";
 import { products } from "@/data/products";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import type { CarouselApi } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const Home = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 5, seconds: 0 });
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const plugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
 
+  const bannerImages = ["/banner1.jpeg", "/banner2.jpeg", "/banner3.jpeg"];
+
+  // Track carousel changes
+  useEffect(() => {
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  // Countdown timer
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(prev => {
@@ -28,42 +54,48 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <div className="px-3 py-4 space-y-4">
-        {/* Category Icons */}
-        <div className="flex justify-around items-center bg-card p-3 rounded-lg shadow-sm">
-          <CategoryIcon
-            imageUrl="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/5f2ee7f883cdb774.png?q=100"
-            label="Top Offers"
-          />
-          <CategoryIcon
-            imageUrl="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/e00302d428f5c7be.png?q=100"
-            label="Mobiles"
-          />
-          <CategoryIcon
-            imageUrl="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/ff559cb9d803d424.png?q=100"
-            label="Fashion"
-          />
-          <CategoryIcon
-            imageUrl="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/af646c36d74c4be9.png?q=100"
-            label="Electronics"
-          />
-        </div>
+      {/* Category Image */}
+      <img src="/category.jpeg" alt="Category" className="w-full h-auto object-cover" />
 
-        {/* Promotion Banners */}
-        <div className="space-y-3">
-          <div className="rounded-lg overflow-hidden shadow-md">
-            <img
-              src="https://rukminim2.flixcart.com/fk-p-flap/960/460/image/604fb3c6709fc1c2.jpeg?q=60"
-              alt="Flipkart Banner 1"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div className="rounded-lg overflow-hidden shadow-md">
-            <img
-              src="https://rukminim2.flixcart.com/fk-p-flap/960/460/image/fe5641546059d994.png?q=60"
-              alt="Flipkart Banner 2"
-              className="w-full h-auto object-cover"
-            />
+      <div className="px-3 py-4 space-y-4">
+
+        {/* Promotion Banner Carousel */}
+        <div className="rounded-lg overflow-hidden shadow-md">
+          <div className="relative">
+            <Carousel
+              plugins={[plugin.current]}
+              className="w-full"
+              setApi={setApi}
+              onMouseEnter={plugin.current.stop}
+              onMouseLeave={plugin.current.reset}
+              opts={{ loop: true }}
+            >
+              <CarouselContent>
+                {bannerImages.map((img, idx) => (
+                  <CarouselItem key={idx}>
+                    <div className="w-full">
+                      <img
+                        src={img}
+                        alt={`Banner ${idx + 1}`}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            {/* Carousel Dots */}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-10">
+              {bannerImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => api?.scrollTo(idx)}
+                  className={`h-2 w-2 rounded-full transition-all ${
+                    idx === current ? 'bg-white w-6' : 'bg-white/60'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

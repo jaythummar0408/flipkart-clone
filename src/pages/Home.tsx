@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
+import SearchBar from "@/components/SearchBar";
 import CategoryIcon from "@/components/CategoryIcon";
 import ProductCard from "@/components/ProductCard";
 import { Clock } from "lucide-react";
@@ -53,6 +54,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <SearchBar />
 
       {/* Category Image */}
       <img src="/category.jpeg" alt="Category" className="w-full h-auto object-cover" />

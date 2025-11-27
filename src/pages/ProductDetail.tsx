@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import type { CarouselApi } from "@/components/ui/carousel";
 import Header from "@/components/Header";
+import SearchBar from "@/components/SearchBar";
 import { products } from "@/data/products";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -112,7 +113,8 @@ const ProductDetail = () => {
   return (
     <div className="min-h-screen bg-background pb-24">
       <Header />
-      
+      <SearchBar />
+
       <div className="px-0 py-0">
         <div className="max-w-2xl mx-auto">
           {/* Product Image Carousel */}

@@ -1,6 +1,5 @@
 import { ShoppingCart, User, Download } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoSvg from "/logo.svg";
 
 const Header = () => {
   return (
@@ -10,7 +9,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img src={logoSvg} alt="Flipkart" className="h-8 w-auto" />
+            <img src="/logo.svg?url" alt="Flipkart" className="h-8 w-auto" />
           </Link>
 
           {/* Right Side Icons */}

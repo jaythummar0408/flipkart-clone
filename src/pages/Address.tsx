@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import StepIndicator from "@/components/StepIndicator";
-import { toast } from "sonner";
 
 const Address = () => {
   const navigate = useNavigate();
@@ -21,11 +20,6 @@ const Address = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.mobile || !formData.pincode || !formData.city || !formData.houseNo || !formData.roadName) {
-      toast.error("Please fill all required fields");
-      return;
-    }
-    toast.success("Address saved successfully");
     navigate("/order-summary");
   };
 
@@ -45,7 +39,7 @@ const Address = () => {
       <div className="px-3 sm:px-4 py-6 max-w-2xl mx-auto w-full">
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            placeholder="Full Name (Required)*"
+            placeholder="Full Name"
             value={formData.fullName}
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
             className="h-12 text-sm border-gray-300 rounded-md"
@@ -53,14 +47,14 @@ const Address = () => {
 
           <Input
             type="tel"
-            placeholder="Mobile number (Required)*"
+            placeholder="Mobile number"
             value={formData.mobile}
             onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
             className="h-12 text-sm border-gray-300 rounded-md"
           />
 
           <Input
-            placeholder="Pincode (Required)*"
+            placeholder="Pincode"
             value={formData.pincode}
             onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
             className="h-12 text-sm border-gray-300 rounded-md"
@@ -68,7 +62,7 @@ const Address = () => {
 
           <div className="grid grid-cols-2 gap-3">
             <Input
-              placeholder="City (Required)*"
+              placeholder="City"
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
               className="h-12 text-sm border-gray-300 rounded-md"
@@ -76,7 +70,7 @@ const Address = () => {
 
             <Select value={formData.state} onValueChange={(value) => setFormData({ ...formData, state: value })}>
               <SelectTrigger className="h-12 text-sm border-gray-300 rounded-md">
-                <SelectValue placeholder="State (Required)*" />
+                <SelectValue placeholder="State" />
               </SelectTrigger>
               <SelectContent className="max-h-[300px]">
                 <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
@@ -120,14 +114,14 @@ const Address = () => {
           </div>
 
           <Input
-            placeholder="House No., Building Name (Required)*"
+            placeholder="House No., Building Name"
             value={formData.houseNo}
             onChange={(e) => setFormData({ ...formData, houseNo: e.target.value })}
             className="h-12 text-sm border-gray-300 rounded-md"
           />
 
           <Input
-            placeholder="Road name, Area, Colony (Required)*"
+            placeholder="Road name, Area, Colony"
             value={formData.roadName}
             onChange={(e) => setFormData({ ...formData, roadName: e.target.value })}
             className="h-12 text-sm border-gray-300 rounded-md"

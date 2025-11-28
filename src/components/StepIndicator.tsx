@@ -12,31 +12,62 @@ const StepIndicator = ({ currentStep }: StepIndicatorProps) => {
   ];
 
   return (
-    <div className="bg-white border-b border-border py-4 px-2 sm:px-4 overflow-x-hidden">
-      <div className="flex items-center justify-center max-w-2xl mx-auto">
-        {steps.map((step, index) => (
-          <div key={step.number} className="flex items-center flex-1">
-            <div className="flex flex-col items-center gap-1.5 flex-1">
+    <div className="bg-white border-b border-gray-200 py-5 px-4">
+      <div className="max-w-xl mx-auto" style={{ paddingLeft: '5px', paddingRight: '5px' }}>
+        {/* Steps Container */}
+        <div className="relative flex items-start justify-between">
+          {/* Background Line - Between first and last step only */}
+          <div
+            className="absolute top-5 h-0.5 bg-gray-200"
+            style={{
+              left: 'calc(16.666%)',
+              right: 'calc(16.666%)',
+              zIndex: 0
+            }}
+          />
+
+          {/* Progress Line - Grows with steps */}
+          <div
+            className="absolute top-5 h-0.5 bg-[#2874F0] transition-all duration-300"
+            style={{
+              left: 'calc(16.666%)',
+              width: currentStep === 1 ? '0%' : currentStep === 2 ? 'calc(33.333%)' : 'calc(66.666%)',
+              zIndex: 1
+            }}
+          />
+
+          {/* Steps */}
+          {steps.map((step, index) => (
+            <div key={step.number} className="flex flex-col items-center relative" style={{ zIndex: 2, flex: 1 }}>
+              {/* Circle */}
               <div
-                className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-semibold text-xs sm:text-sm border-2 ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 ${
                   currentStep > step.number
-                    ? "bg-primary text-primary-foreground border-primary"
+                    ? "bg-[#2874F0] text-white border-2 border-[#2874F0]"
                     : currentStep === step.number
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-white text-muted-foreground border-border"
+                    ? "bg-[#2874F0] text-white border-2 border-[#2874F0]"
+                    : "bg-white text-gray-400 border-2 border-gray-300"
                 }`}
               >
-                {currentStep > step.number ? <Check className="h-3 w-3 sm:h-4 sm:w-4" /> : step.number}
+                {currentStep > step.number ? (
+                  <Check className="h-5 w-5 stroke-[3]" />
+                ) : (
+                  step.number
+                )}
               </div>
-              <span className={`text-[10px] sm:text-xs font-medium text-center ${currentStep >= step.number ? "text-foreground" : "text-muted-foreground"} max-w-[60px] sm:max-w-none leading-tight`}>
+
+              {/* Label */}
+              <span
+                className={`mt-2 text-xs font-medium text-center transition-colors duration-300 ${
+                  currentStep >= step.number ? "text-gray-900" : "text-gray-400"
+                }`}
+                style={{ maxWidth: '80px' }}
+              >
                 {step.label}
               </span>
             </div>
-            {index < steps.length - 1 && (
-              <div className={`w-8 sm:w-16 h-[2px] mx-1 sm:mx-3 flex-shrink-0 ${currentStep > step.number ? "bg-primary" : "bg-border"}`} />
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

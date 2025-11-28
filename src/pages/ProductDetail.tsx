@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import type { CarouselApi } from "@/components/ui/carousel";
 import Header from "@/components/Header";
-import SearchBar from "@/components/SearchBar";
 import { products } from "@/data/products";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -113,7 +112,6 @@ const ProductDetail = () => {
   return (
     <div className="min-h-screen bg-background pb-24">
       <Header />
-      <SearchBar />
 
       <div className="px-0 py-0">
         <div className="max-w-2xl mx-auto">
@@ -383,13 +381,15 @@ const ProductDetail = () => {
           {/* Action Buttons */}
           <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
             <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full text-base font-bold border-2 border-gray-400 text-gray-800 hover:bg-gray-50 rounded-lg h-12"
-              >
-                Add to cart
-              </Button>
+              <Link to="/address" className="w-full">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full text-base font-bold border-2 border-gray-400 text-gray-800 hover:bg-gray-50 rounded-lg h-12"
+                >
+                  Add to cart
+                </Button>
+              </Link>
               <Link to="/address" className="w-full">
                 <Button
                   size="lg"

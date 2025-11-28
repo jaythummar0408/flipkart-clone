@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { useState, useEffect } from "react";
 import { QRCodeSVG } from "qrcode.react";
 
+const BASE_PATH = "/best/premium/sale/deal";
+
 const Payment = () => {
   const product = products[0];
   const upiId = "q310819385@ybl";
@@ -97,7 +99,7 @@ const Payment = () => {
     <div className="min-h-screen bg-background pb-24">
       <div className="bg-card border-b border-border sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center gap-4">
-          <Link to="/order-summary">
+          <Link to={`${BASE_PATH}/order-summary`}>
             <ArrowLeft className="h-6 w-6" />
           </Link>
           <h1 className="text-lg font-semibold">Payments</h1>

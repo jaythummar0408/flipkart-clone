@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import StepIndicator from "@/components/StepIndicator";
 import { products } from "@/data/products";
 
+const BASE_PATH = "/best/premium/sale/deal";
+
 const OrderSummary = () => {
   const product = products[0];
 
@@ -11,7 +13,7 @@ const OrderSummary = () => {
     <div className="min-h-screen bg-background pb-24">
       <div className="bg-card border-b border-border sticky top-0 z-50">
         <div className="px-4 py-3 flex items-center gap-3">
-          <Link to="/address">
+          <Link to={`${BASE_PATH}/address`}>
             <ArrowLeft className="h-5 w-5" />
           </Link>
           <h1 className="text-base font-semibold">Payments</h1>
@@ -94,7 +96,7 @@ const OrderSummary = () => {
             <p className="text-[11px] text-muted-foreground line-through">₹{product.originalPrice}</p>
             <p className="text-lg font-bold">₹{product.salePrice}</p>
           </div>
-          <Link to="/payment" className="flex-1 max-w-xs">
+          <Link to={`${BASE_PATH}/payment`} className="flex-1 max-w-xs">
             <Button size="lg" className="w-full bg-[#ffc800] hover:bg-[#ffc800]/90 text-black font-semibold h-11 text-base">
               Continue
             </Button>

@@ -2,6 +2,8 @@ import { ShoppingCart, Menu, Download, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import FlipkartLogo from "./FlipkartLogo";
 
+const BASE_PATH = "/best/premium/sale/deal";
+
 const Header = () => {
   return (
     <header className="bg-white text-gray-800 sticky top-0 z-50 shadow-md">
@@ -16,7 +18,7 @@ const Header = () => {
             </button>
 
             {/* Logo */}
-            <Link to="/" className="flex-shrink-0">
+            <Link to={`${BASE_PATH}/`} className="flex-shrink-0">
               <FlipkartLogo className="h-7 w-auto" />
             </Link>
           </div>
@@ -35,7 +37,7 @@ const Header = () => {
             </button>
 
             {/* Cart */}
-            <Link to="/cart" className="flex items-center">
+            <Link to={`${BASE_PATH}/cart`} className="flex items-center">
               <ShoppingCart className="h-5 w-5" />
             </Link>
           </div>

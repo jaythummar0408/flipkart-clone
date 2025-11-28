@@ -12,6 +12,8 @@ import Header from "@/components/Header";
 import { products } from "@/data/products";
 import Autoplay from "embla-carousel-autoplay";
 
+const BASE_PATH = "/best/premium/sale/deal";
+
 const ProductDetail = () => {
   const { id } = useParams();
   const [api, setApi] = useState<CarouselApi>();
@@ -381,7 +383,7 @@ const ProductDetail = () => {
           {/* Action Buttons */}
           <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
             <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
-              <Link to="/address" className="w-full">
+              <Link to={`${BASE_PATH}/address`} className="w-full">
                 <Button
                   variant="outline"
                   size="lg"
@@ -390,7 +392,7 @@ const ProductDetail = () => {
                   Add to cart
                 </Button>
               </Link>
-              <Link to="/address" className="w-full">
+              <Link to={`${BASE_PATH}/address`} className="w-full">
                 <Button
                   size="lg"
                   className="w-full bg-[#EACA43] hover:bg-[#EACA43]/90 text-gray-900 font-bold text-base rounded-lg h-12"

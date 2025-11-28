@@ -10,9 +10,11 @@ interface ProductCardProps {
   discount: number;
 }
 
+const BASE_PATH = "/best/premium/sale/deal";
+
 const ProductCard = ({ id, name, image, originalPrice, salePrice, discount }: ProductCardProps) => {
   return (
-    <Link to={`/product/${id}`}>
+    <Link to={`${BASE_PATH}/product/${id}`}>
       <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer bg-card border-0 shadow-sm">
         <div className="aspect-square bg-white p-3 flex items-center justify-center">
           <img src={image} alt={name} className="max-h-full max-w-full object-contain" />

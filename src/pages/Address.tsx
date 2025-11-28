@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import StepIndicator from "@/components/StepIndicator";
 
+const BASE_PATH = "/best/premium/sale/deal";
+
 const Address = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -20,14 +22,14 @@ const Address = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/order-summary");
+    navigate(`${BASE_PATH}/order-summary`);
   };
 
   return (
     <div className="min-h-screen bg-background pb-20 overflow-x-hidden">
       <div className="bg-card border-b border-border sticky top-0 z-50">
         <div className="px-4 py-3 flex items-center gap-3">
-          <Link to="/">
+          <Link to={`${BASE_PATH}/`}>
             <ArrowLeft className="h-5 w-5" />
           </Link>
           <h1 className="text-base font-semibold">Add delivery address</h1>
